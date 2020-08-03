@@ -1,5 +1,18 @@
+.dark-primary-color    { background: #ffa000; }
+.default-primary-color { background: #FFC107; }
+.light-primary-color   { background: #FFECB3; }
+.text-primary-color    { color: #212121; }
+.accent-color          { background: #FF9800; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }
+
 .App {
   text-align: center;
+}
+
+.container-app {
+  height: 100%;
 }
 
 .App-logo {
@@ -35,4 +48,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.switch-wrapper {
+  height: 100%;
+}
+
+.switch-wrapper > div {
+  height: 100%;
 }

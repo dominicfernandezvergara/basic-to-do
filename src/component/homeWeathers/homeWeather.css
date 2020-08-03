@@ -1,0 +1,13 @@
+.containerWeather {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 130px;
+}
+
+.image-sun {
+  background-image: url(../../images/undraw_weather_app_i5sm.svg);
+  background-size: cover;
+  width: 120px;
+  height: 100px;
+}
