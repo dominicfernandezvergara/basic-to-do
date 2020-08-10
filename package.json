@@ -2,6 +2,10 @@
   "name": "todo-list-basic-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.7.0",
+    "node": "8.11.1"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
