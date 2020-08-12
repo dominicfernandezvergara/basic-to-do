@@ -52,7 +52,10 @@ export const getWheaterData = ({ latitude, longitude }) => async (dispatch) => {
 
   try {
     const API_KEY = "29958692948bbd2bd99b11c5268abf11";
-    const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+    const city = "berlin";
+
+    // const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+    const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
     const res = await axios.get(API_URL);
 
     const weatherRes = {

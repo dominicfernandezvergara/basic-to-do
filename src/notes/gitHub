@@ -1,6 +1,19 @@
-how to Update gitHub
+How to Update gitHub
 
-gst   (by see status app)
+gst   (to see status app)
 git add .
-git commit -m "updated the header and footer"
+git commit -m "feat: updated the header and footer"
 git push
+____________________________
+
+How create a new branch
+
+gb (to see all the branches that exist)
+
+git checkout -b new-branch-name (to create a new branch)
+
+Semantic Commit Messages(name to commit and name new branch)
+https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
+
+____________________________
+
