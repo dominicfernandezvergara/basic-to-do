@@ -43,7 +43,7 @@ const HomeWeather = () => {
         handleGeoSuccess,
         handleGeoError
       );
-    }
+    } else dispatch(getWheaterData());
   }, []);
 
   // const isLoggedIn = true;
