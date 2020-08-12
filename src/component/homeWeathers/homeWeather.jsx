@@ -3,12 +3,12 @@ import "./homeWeather.css";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { getWheaterData } from "../../redux/weatherStore";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 // import useGeolocation from '../../../hooks/use-geolocation';
 
 const HomeWeather = () => {
   const dispatch = useDispatch();
-  const time = moment().format('LTS');
+  const time = moment().format("LTS");
   const date = moment().format("LL");
   const city = useSelector((store) => store.weather.data.city);
   const temperature = useSelector((store) => store.weather.data.temperature);

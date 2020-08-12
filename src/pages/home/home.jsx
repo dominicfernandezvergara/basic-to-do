@@ -15,8 +15,6 @@ const Home = ({ loading }) => {
   // const todosDailyTask = useSelector((state) => state.taskTodo.todosDailyTask);
   // const todosOthers = useSelector((state) => state.taskTodo.todosOthers);
 
-
-
   console.log("todosSuperMarket", todosSuperMarket);
   if (loading) {
     return <div>loading...</div>;
@@ -40,14 +38,14 @@ const Home = ({ loading }) => {
         Welcome Domi...
       </div>
       <HomeWeather />
-       {/* <Slider /> */}
+      {/* <Slider /> */}
       <Todo
         todos={todosSuperMarket}
         type="todosSuperMarket"
-        title="Super Market"
+        title="Shopping list"
         image={imageEmptyState}
       />
-     {/* <Todo
+      {/* <Todo
         todos={todosDailyTask}
         type="todosDailyTask"
         title="Daily Tasks"
