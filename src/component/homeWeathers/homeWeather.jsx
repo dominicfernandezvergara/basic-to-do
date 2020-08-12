@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./homeWeather.css";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { getWheaterData } from "../../redux/weatherStore";
+import { getWheaterData, getWheaterDataTest } from "../../redux/weatherStore";
 import CircularProgress from "@material-ui/core/CircularProgress";
 // import useGeolocation from '../../../hooks/use-geolocation';
 
@@ -38,12 +38,13 @@ const HomeWeather = () => {
   }
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        handleGeoSuccess,
-        handleGeoError
-      );
-    } else dispatch(getWheaterData());
+    dispatch(getWheaterDataTest());
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     handleGeoSuccess,
+    //     handleGeoError
+    //   );
+    // } else dispatch(getWheaterDataTest());
   }, []);
 
   // const isLoggedIn = true;
