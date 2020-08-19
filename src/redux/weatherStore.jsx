@@ -75,40 +75,40 @@ export default function weatherReducer(state = initialData, action) {
   }
 }
 
-export const getWheaterDataLatitudeLongitude = ({
-  latitude,
-  longitude,
-}) => async (dispatch) => {
-  dispatch({
-    type: GET_WEATHER,
-  });
+// comment getWheaterDataLatitudeLongitude: if you use in the page "Home" Geolocation to get latitude and longitude you need to use the commented function
 
-  try {
-    const API_KEY = "29958692948bbd2bd99b11c5268abf11";
-    // const city = "berlin";
+// export const getWheaterDataLatitudeLongitude = ({
+//   latitude,
+//   longitude,
+// }) => async (dispatch) => {
+//   dispatch({
+//     type: GET_WEATHER,
+//   });
 
-    const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
-    // const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
-    const res = await axios.get(API_URL);
+//   try {
+//     const API_KEY = "29958692948bbd2bd99b11c5268abf11";
 
-    const weatherRes = {
-      temperature: res.data.main.temp,
-      city: res.data.name,
-      country: res.data.sys.country,
-      latitude,
-      longitude,
-    };
-    dispatch({
-      type: GET_WEATHER_SUCCESS,
-      payload: weatherRes,
-    });
-  } catch (error) {
-    dispatch({
-      type: GET_WEATHER_ERROR,
-      payload: error,
-    });
-  }
-};
+//     const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+//     const res = await axios.get(API_URL);
+
+//     const weatherRes = {
+//       temperature: res.data.main.temp,
+//       city: res.data.name,
+//       country: res.data.sys.country,
+//       latitude,
+//       longitude,
+//     };
+//     dispatch({
+//       type: GET_WEATHER_SUCCESS,
+//       payload: weatherRes,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: GET_WEATHER_ERROR,
+//       payload: error,
+//     });
+//   }
+// };
 
 export const getWheaterDataCityName = (city) => async (dispatch) => {
   console.log("cityReact", city);
@@ -120,7 +120,6 @@ export const getWheaterDataCityName = (city) => async (dispatch) => {
     const API_KEY = "29958692948bbd2bd99b11c5268abf11";
     const citya = city;
 
-    // const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
     const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${citya}&appid=${API_KEY}&units=metric`;
     const res = await axios.get(API_URL);
 

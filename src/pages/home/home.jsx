@@ -3,11 +3,13 @@ import "./home.css";
 import HomeWeather from "../../component/homeWeathers/homeWeather";
 import Todo from "../../component/todo";
 import ImageShopping from "../../images/undraw_add_to_cart_vkjp.svg";
-// import ImageOthers from "../../images/undraw_buy_house_560d.svg";
-// import ImageToDo from "../../images/undraw_following_q0cr.svg";
-// import Slider from "../../component/slider/slider";
 import { useSelector } from "react-redux";
 import Example from "../../component/modal/modal";
+
+// All comment in the page are an example to add other to do list in the app
+
+// import ImageOthers from "../../images/undraw_buy_house_560d.svg";
+// import ImageToDo from "../../images/undraw_following_q0cr.svg";
 
 const Home = ({ loading }) => {
   const todosSuperMarket = useSelector(
@@ -39,7 +41,6 @@ const Home = ({ loading }) => {
         Welcome Domi...
       </div>
       <HomeWeather />
-      {/* <Slider /> */}
       <Todo
         todos={todosSuperMarket}
         type="todosSuperMarket"

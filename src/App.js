@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AnimatedSwitch } from "react-router-transition";
 import Home from "./pages/home";
-import Nav from "./component/nav";
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
           </Route>
         </AnimatedSwitch>
       </Router>
-      <Nav />
     </div>
   );
 }
