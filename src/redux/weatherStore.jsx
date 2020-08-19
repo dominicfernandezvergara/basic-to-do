@@ -75,7 +75,10 @@ export default function weatherReducer(state = initialData, action) {
   }
 }
 
-export const getWheaterData = ({ latitude, longitude }) => async (dispatch) => {
+export const getWheaterDataLatitudeLongitude = ({
+  latitude,
+  longitude,
+}) => async (dispatch) => {
   dispatch({
     type: GET_WEATHER,
   });
@@ -107,17 +110,18 @@ export const getWheaterData = ({ latitude, longitude }) => async (dispatch) => {
   }
 };
 
-export const getWheaterDataTest = () => async (dispatch) => {
+export const getWheaterDataCityName = (city) => async (dispatch) => {
+  console.log("cityReact", city);
   dispatch({
     type: GET_WEATHER_TEST,
   });
 
   try {
     const API_KEY = "29958692948bbd2bd99b11c5268abf11";
-    const city = "berlin";
+    const citya = city;
 
     // const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
-    const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+    const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${citya}&appid=${API_KEY}&units=metric`;
     const res = await axios.get(API_URL);
 
     const weatherRes = {

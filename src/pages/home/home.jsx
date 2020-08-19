@@ -7,6 +7,7 @@ import ImageShopping from "../../images/undraw_add_to_cart_vkjp.svg";
 // import ImageToDo from "../../images/undraw_following_q0cr.svg";
 // import Slider from "../../component/slider/slider";
 import { useSelector } from "react-redux";
+import Example from "../../component/modal/modal";
 
 const Home = ({ loading }) => {
   const todosSuperMarket = useSelector(
@@ -57,6 +58,7 @@ const Home = ({ loading }) => {
         title="Others"
         image={imageEmptyStateOthers}
      /> */}
+      <Example />
     </div>
   );
 };

@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import "./homeWeather.css";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { getWheaterData, getWheaterDataTest } from "../../redux/weatherStore";
+import {
+  getWheaterDataLatitudeLongitude,
+  getWheaterDataCityName,
+} from "../../redux/weatherStore";
 import CircularProgress from "@material-ui/core/CircularProgress";
 // import useGeolocation from '../../../hooks/use-geolocation';
 
@@ -30,7 +33,7 @@ const HomeWeather = () => {
       longitude,
     };
 
-    dispatch(getWheaterData(response));
+    dispatch(getWheaterDataLatitudeLongitude(response));
   }
 
   function handleGeoError(error) {
@@ -38,7 +41,7 @@ const HomeWeather = () => {
   }
 
   useEffect(() => {
-    dispatch(getWheaterDataTest());
+    dispatch(getWheaterDataCityName());
     // if (navigator.geolocation) {
     //   navigator.geolocation.getCurrentPosition(
     //     handleGeoSuccess,
@@ -52,7 +55,6 @@ const HomeWeather = () => {
   const weatherInfo = (
     <div className="WeatherInfo">
       <div className="city">{city}</div>
-      <div className="country">{country}</div>
       <div className="temperature">{temperature}ºC</div>
     </div>
   );
