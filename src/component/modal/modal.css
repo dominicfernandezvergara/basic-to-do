@@ -1,0 +1,78 @@
+.container-modal {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  justify-content: center;
+}
+.container-modal .button {
+  border: 2px solid #bdbdbd;
+  border-radius: 6px;
+  margin-left: 10px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  background-color: #ffecb3;
+  outline: none;
+}
+
+.ReactModal__Overlay--after-open .modal {
+  display: flex;
+  place-content: center;
+  margin-top: 66px;
+  outline: none;
+}
+
+.modal-message {
+  display: flex;
+  flex-direction: column;
+  background: #f6ce55;
+  height: auto;
+  width: 80%;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.modal-message h2 {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.modal-message .button-close {
+  border: 2px solid #bdbdbd;
+  border-radius: 6px;
+  margin-left: 10px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  background-color: #f6ce55;
+  width: 40px;
+  height: 40px;
+}
+.modal-message .text {
+  align-self: center;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.modal-message .form {
+  display: flex;
+}
+
+.modal-message .input {
+  height: 32px;
+  width: 200px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  padding-left: 16px;
+}
+
+.modal-message .button {
+  border: none;
+  border-radius: 6px;
+  margin-left: 10px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  background-color: #ffc107;
+}
