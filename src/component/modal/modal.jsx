@@ -1,22 +1,23 @@
 import React, { useState } from "react";
+import "./modal.css";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { getWheaterDataCityName } from "../../redux/weatherStore";
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+// const customStyles = {
+//   content: {
+//     top: "50%",
+//     left: "50%",
+//     right: "auto",
+//     bottom: "auto",
+//     marginRight: "-50%",
+//     transform: "translate(-50%, -50%)",
+//   },
+// };
 
 // Gibhub actual modal: https://github.com/reactjs/react-modal
 //otros ejemplos de modales: https://material-ui.com/es/components/dialogs/
-function Example() {
-  const [modalIsOpen, setIsOpen] = useState(false);
+const ModalCityChange = () => {
+  const [modalIsOpen, setIsOpen] = useState(true);
   const [city, setCity] = useState("");
   const dispatch = useDispatch();
 
@@ -31,6 +32,8 @@ function Example() {
     e.preventDefault();
     console.log("citymodal", city);
     dispatch(getWheaterDataCityName(city));
+    setIsOpen(false);
+    setCity("");
   };
 
   const onChangeInput = (e) => {
@@ -42,31 +45,42 @@ function Example() {
 
   return (
     <div className="container-modal">
-      <button onClick={openModal}>Open Modal</button>
+      <button className="button" onClick={openModal}>
+        Change City Name
+      </button>
       <Modal
+        className="modal"
+        ariaHideApp={false}
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyles}
+        // style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2>Welcome!</h2>
-        <button onClick={closeModal}>X</button>
-        <div>What is your city?</div>
-        <form>
-          <input
-            type="text"
-            className="input"
-            value={city}
-            onChange={(e) => {
-              onChangeInput(e);
-            }}
-            placeholder="CITY NAME"
-          />
-          <button onClick={(e) => onSubmitCityName(e, city)}>Start</button>
-        </form>
+        <div className="modal-message">
+          <h2>Welcome!</h2>
+
+          <div className="text">What is your city?</div>
+          <form className="form">
+            <input
+              type="text"
+              className="input"
+              value={city}
+              onChange={(e) => {
+                onChangeInput(e);
+              }}
+              placeholder="CITY NAME"
+            />
+            <button
+              className="button"
+              onClick={(e) => onSubmitCityName(e, city)}
+            >
+              ENTER
+            </button>
+          </form>
+        </div>
       </Modal>
     </div>
   );
-}
+};
 
-export default Example;
+export default ModalCityChange;

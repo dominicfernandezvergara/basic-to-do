@@ -4,7 +4,7 @@ import HomeWeather from "../../component/homeWeathers/homeWeather";
 import Todo from "../../component/todo";
 import ImageShopping from "../../images/undraw_add_to_cart_vkjp.svg";
 import { useSelector } from "react-redux";
-import Example from "../../component/modal/modal";
+import ModalCityChange from "../../component/modal";
 
 // All comment in the page are an example to add other to do list in the app
 
@@ -59,7 +59,7 @@ const Home = ({ loading }) => {
         title="Others"
         image={imageEmptyStateOthers}
      /> */}
-      <Example />
+      <ModalCityChange />
     </div>
   );
 };
