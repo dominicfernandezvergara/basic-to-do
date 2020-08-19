@@ -6,6 +6,7 @@
 
 .TitleTodo {
   font-size: 22px;
+  margin-bottom: 10px;
 }
 
 .todo-list {
@@ -28,7 +29,7 @@
 }
 
 .containerRadioGroup .MuiRadio-colorSecondary.Mui-checked {
-  color: #FF9800;
+  color: #ff9800;
 }
 
 .welcome-image {

@@ -20,16 +20,16 @@ function Todo({ title, image, todos, type }) {
   // const todosSuperMarket = useSelector((state) => state.taskTodo.todos);
   const dispatch = useDispatch();
   const [showCompletedTodos, setShowCompletedTodos] = useState(false);
-  const [showActiveTodos, setShowActiveTodos] = useState(false);
-  const [showAllTodos, setShowAllTodos] = useState(true);
+  const [showActiveTodos, setShowActiveTodos] = useState(true);
+  const [showAllTodos, setShowAllTodos] = useState(false);
 
   const completeTodo = (index) => {
-    const todoDataComplete = {index, type}
+    const todoDataComplete = { index, type };
     dispatch(completeTodoData(todoDataComplete));
   };
 
-  const removeTodo = (index ) => {
-    const todoDataRemove = {index, type}
+  const removeTodo = (index) => {
+    const todoDataRemove = { index, type };
     dispatch(removeTodoData(todoDataRemove));
   };
 
@@ -129,19 +129,19 @@ function Todo({ title, image, todos, type }) {
               <div className="containerRadioGroup">
                 <FormControlLabel
                   value="completed"
-                  control={<Radio />}
+                  control={<Radio checked={showCompletedTodos} />}
                   label="Completed"
                   onChange={() => completed()}
                 />
                 <FormControlLabel
                   value="active"
-                  control={<Radio />}
+                  control={<Radio checked={showActiveTodos} />}
                   label="Active"
                   onChange={() => active()}
                 />
                 <FormControlLabel
                   value="all"
-                  control={<Radio />}
+                  control={<Radio checked={showAllTodos} />}
                   label="All"
                   onChange={() => all()}
                 />
