@@ -38,7 +38,7 @@ const Home = ({ loading }) => {
         // contentEditable={true}
         className="home-title"
       >
-        Welcome to your shopping list
+        Welcome to your shopping list!!
       </div>
       <HomeWeather />
       <Todo
