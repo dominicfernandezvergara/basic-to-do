@@ -1,0 +1,57 @@
+.container-login {
+  height: 100%;
+}
+.login-title {
+  margin-top: 100px;
+}
+
+.login-text {
+  margin-bottom: 20px;
+  color: grey;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.input-login {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  align-self: center;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.button-submit-login {
+  width: 100px;
+  height: 36px;
+  border: none;
+  border-radius: 30px;
+  background: #ffc107;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  align-self: flex-end;
+  margin-right: 26px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  outline: 0;
+}
+
+.container-button-sing-up {
+  margin-top: 300px;
+}
+
+.button-go-sing-up {
+  border: none;
+  color: #ffc107;
+  background: none;
+  font-size: 16px;
+  font-weight: bold;
+}

@@ -1,0 +1,22 @@
+.containerHome {
+  /* if I use Nav component I must to change the "height" */
+  /* height: calc(100% - 60px); */
+  height: 100%;
+  background-color: #fbe9e7;
+  position: relative;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.homeTitle {
+  text-align: center;
+  font-size: 33px;
+  font-weight: bold;
+  font-family: fantasy;
+  margin-top: 10px;
+}
+
+.welcomeImage {
+  width: 60%;
+  height: 100%;
+}

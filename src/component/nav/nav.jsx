@@ -1,5 +1,5 @@
 import React from "react";
-import "./nav.css";
+import styles from "./nav.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconButton from "@material-ui/core/IconButton";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +23,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="button-navigation-container">
+    <div className={styles.containerNav}>
       <IconButton onClick={onClickHeart}>
         <FontAwesomeIcon icon={faPlus} className="heart-icon" />
       </IconButton>

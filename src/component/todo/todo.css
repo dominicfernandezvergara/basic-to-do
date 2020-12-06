@@ -1,5 +1,5 @@
 .containerTodo {
-  background: #ffecb3;
+  background: #ff9a8c;
   padding: 30px;
   border-radius: 10px;
 }
@@ -7,10 +7,11 @@
 .TitleTodo {
   font-size: 22px;
   margin-bottom: 10px;
+  color: #333456;
 }
 
 .todo-list {
-  background: #ffecb3;
+  background: transparent;
   border-radius: 4px;
   padding: 5px;
   max-width: 400px;
@@ -33,7 +34,7 @@
 }
 
 .containerRadioGroup .MuiRadio-colorSecondary.Mui-checked {
-  color: #ff9800;
+  color: #c96a5f;
 }
 
 .welcome-image {

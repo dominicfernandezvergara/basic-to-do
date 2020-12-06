@@ -1,0 +1,68 @@
+.containerSliderDays {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #80808033;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+/* .buttonMonth {
+  position: absolute;
+  z-index: 99;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  background-color: #a7a3a3;
+  height: 100%;
+  width: 40px;
+  color: #434141e0;
+} */
+
+.item {
+  margin: 0 2px;
+  height: 30px;
+  width: 30px;
+  background-color: transparent;
+  border: none;
+}
+
+.activeItem {
+  transform: scale(1.6);
+  background-color: #192fdf;
+  margin: 0px 10px;
+  border-radius: 0px 0px 7px 7px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+button:focus {
+  outline: none;
+}
+
+.containerDayList {
+  display: flex;
+}
+
+.buttonNextDay {
+  right: 0;
+  width: 60px;
+}
+
+.buttonPrevDay,
+.buttonNextDay {
+  position: absolute;
+
+  height: 100%;
+  width: 50px;
+  z-index: 99;
+  background-color: #b5afaf;
+  border: none;
+}
+
+.buttonPrevDay {
+  left: 0px;
+}

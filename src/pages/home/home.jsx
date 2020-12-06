@@ -1,10 +1,14 @@
 import React from "react";
-import "./home.css";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import styles from "./home.module.css";
 import HomeWeather from "../../component/homeWeathers/homeWeather";
 import Todo from "../../component/todo";
 import ImageShopping from "../../images/undraw_add_to_cart_vkjp.svg";
-import { useSelector } from "react-redux";
-import ModalCityChange from "../../component/modal";
+import ModalCityChange from "../../component/modal/modal-welcome";
+import { removeCurrentUser } from "../../redux/usersStore";
+import Nav from "../../component/nav";
 
 // All comment in the page are an example to add other to do list in the app
 
@@ -12,6 +16,8 @@ import ModalCityChange from "../../component/modal";
 // import ImageToDo from "../../images/undraw_following_q0cr.svg";
 
 const Home = ({ loading }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const todosSuperMarket = useSelector(
     (state) => state.taskTodo.todosSuperMarket
   );
@@ -24,7 +30,7 @@ const Home = ({ loading }) => {
   }
 
   const imageEmptyState = (
-    <img className="welcome-image" src={ImageShopping} alt="React Logo" />
+    <img className={styles.welcomeImage} src={ImageShopping} alt="React Logo" />
   );
   // const imageEmptyStateTodo = (
   //   <img className="welcome-image" src={ImageToDo} alt="React Logo" />
@@ -32,14 +38,15 @@ const Home = ({ loading }) => {
   // const imageEmptyStateOthers = (
   //   <img className="welcome-image" src={ImageOthers} alt="React Logo" />
   // );
+
+  const logOutClick = () => {
+    dispatch(removeCurrentUser({}));
+    history.push("./login");
+  };
   return (
-    <div className="container-home">
-      <div
-        // contentEditable={true}
-        className="home-title"
-      >
-        Welcome to your shopping list
-      </div>
+    <div className={styles.containerHome}>
+      <Nav />
+      <div className={styles.homeTitle}>Welcome</div>
       <HomeWeather />
       <Todo
         todos={todosSuperMarket}
@@ -60,6 +67,9 @@ const Home = ({ loading }) => {
         image={imageEmptyStateOthers}
      /> */}
       <ModalCityChange />
+      <button type="button " onClick={logOutClick}>
+        Log Out
+      </button>
     </div>
   );
 };

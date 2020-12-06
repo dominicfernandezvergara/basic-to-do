@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import "./homeWeather.css";
+import styles from "./homeWeather.module.css";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
+import SunImage from "../../images/undraw_weather_app_i5sm.svg";
 import {
   getWheaterDataLatitudeLongitude,
   getWheaterDataCityName,
@@ -56,21 +57,21 @@ const HomeWeather = () => {
   // const isLoggedIn = true;
 
   const weatherInfo = (
-    <div className="WeatherInfo">
-      <div className="city">{city}</div>
-      <div className="temperature">{temperature}ºC</div>
+    <div className={styles.weatherInfo}>
+      <div className={styles.city}>{city}</div>
+      <div className={styles.temperature}>{temperature}ºC</div>
     </div>
   );
 
   const wait = <CircularProgress />;
 
   return (
-    <div className="containerHome containerWeather">
-      <div className="image-sun"></div>
-      <div className="containerDate">
+    <div className={styles.containerWeather}>
+      <img className={styles.imageSun} src={SunImage} alt="" />
+      <div className={styles.containerDate}>
         <div>{loading === null || loading ? wait : weatherInfo}</div>
-        <div className="date">{date}</div>
-        <div className="date">{time}</div>
+        <div>{date}</div>
+        <div>{time}</div>
       </div>
     </div>
   );

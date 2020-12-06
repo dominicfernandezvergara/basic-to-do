@@ -1,5 +1,5 @@
-.button-navigation-container {
-  background-color: #ffa000;
+.containerNav {
+  background-color: #c96a5f;
   height: 60px;
   display: flex;
   justify-content: space-around;

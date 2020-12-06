@@ -1,86 +1,58 @@
-import React, { useState } from "react";
-import "./modal.css";
-import Modal from "react-modal";
-import { useDispatch } from "react-redux";
-import { getWheaterDataCityName } from "../../redux/weatherStore";
-// const customStyles = {
-//   content: {
-//     top: "50%",
-//     left: "50%",
-//     right: "auto",
-//     bottom: "auto",
-//     marginRight: "-50%",
-//     transform: "translate(-50%, -50%)",
-//   },
-// };
+import React from "react";
+import PropTypes from "prop-types";
+import useNoScroll from "../../hooks/use-no-scroll";
+import styles from "./modal.module.css";
 
-// Gibhub actual modal: https://github.com/reactjs/react-modal
-//otros ejemplos de modales: https://material-ui.com/es/components/dialogs/
-const ModalCityChange = () => {
-  const [modalIsOpen, setIsOpen] = useState(true);
-  const [city, setCity] = useState("");
-  const dispatch = useDispatch();
+function Modal({ open, children, close = null, footer = true, header = true }) {
+  useNoScroll(open);
 
-  function openModal() {
-    setIsOpen(true);
+  function handleClose() {
+    close();
   }
 
-  function closeModal() {
-    setIsOpen(false);
+  if (!open) {
+    return null;
   }
-  const onSubmitCityName = (e, city) => {
-    e.preventDefault();
-    console.log("citymodal", city);
-    dispatch(getWheaterDataCityName(city));
-    setIsOpen(false);
-    setCity("");
-  };
-
-  const onChangeInput = (e) => {
-    e.preventDefault();
-    console.log("e.target.value", e.target.value);
-    setCity(e.target.value);
-    console.log("cityOnChange", city);
-  };
 
   return (
-    <div className="container-modal">
-      <button className="button" onClick={openModal}>
-        Change City Name
-      </button>
-      <Modal
-        className="modal"
-        ariaHideApp={false}
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        // style={customStyles}
-        contentLabel="Example Modal"
+    <div
+      role="button"
+      tabIndex={0}
+      aria-hidden="true"
+      className={styles.shadowModal}
+      onClick={handleClose}
+    >
+      <div
+        role="button"
+        tabIndex={0}
+        aria-hidden="true"
+        className={styles.containerModal}
+        onClick={(e) => e.stopPropagation()}
       >
-        <div className="modal-message">
-          <h2>Welcome!</h2>
-
-          <div className="text">What is your city?</div>
-          <form className="form">
-            <input
-              type="text"
-              className="input"
-              value={city}
-              onChange={(e) => {
-                onChangeInput(e);
-              }}
-              placeholder="CITY NAME"
-            />
-            <button
-              className="button"
-              onClick={(e) => onSubmitCityName(e, city)}
-            >
-              ENTER
-            </button>
-          </form>
-        </div>
-      </Modal>
+        <button
+          type="button"
+          className={styles.closeModalButton}
+          onClick={close}
+        >
+          X
+        </button>
+        {header && <div className={styles.modalHeader}>Header</div>}
+        {children}
+        {footer && <div className={styles.modalFooter}>FOOTER</div>}
+      </div>
     </div>
   );
+}
+Modal.propTypes = {
+  footer: PropTypes.bool,
+  header: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
-export default ModalCityChange;
+Modal.defaultProps = {
+  footer: true,
+  header: true,
+};
+export default Modal;

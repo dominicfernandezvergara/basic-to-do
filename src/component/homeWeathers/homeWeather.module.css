@@ -3,11 +3,11 @@
   align-items: center;
   justify-content: space-around;
   height: 130px;
+  background-color: #ff9a8c;
+  margin-bottom: 20px;
 }
 
-.image-sun {
-  background-image: url(../../images/undraw_weather_app_i5sm.svg);
-  background-size: cover;
+.imageSun {
   width: 120px;
   height: 100px;
 }
