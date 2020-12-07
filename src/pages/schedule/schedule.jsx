@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 
 import styles from "./schedule.module.css";
-import SliderDays from "../../component/slider-days";
+import SliderWeek from "../../component/slider-week";
 
 import Modal from "../../component/modal";
 import ModalNewTask from "../../component/modal/modal-new-task";
+import Test from "../../component/slider-week/test";
 
 function Schedule() {
   const [modalState, setModalState] = useState(false);
@@ -52,7 +53,7 @@ function Schedule() {
         </button>
       </div>
       <div className={styles.containerSliderWeekdays}>
-        <SliderDays />
+        <SliderWeek />
       </div>
       <div className={styles.containerDay}>
         <div className={styles.dayName}>Day</div>
@@ -83,6 +84,7 @@ function Schedule() {
       >
         <ModalNewTask />
       </Modal>
+      <Test />
     </div>
   );
 }
