@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 
 import styles from "./schedule.module.css";
-import SliderWeek from "../../component/slider-week";
 
 import Modal from "../../component/modal";
 import ModalNewTask from "../../component/modal/modal-new-task";
-import Test from "../../component/slider-week/test";
+import SliderWeek from "../../component/slider-week";
 
 function Schedule() {
   const [modalState, setModalState] = useState(false);
@@ -84,7 +83,6 @@ function Schedule() {
       >
         <ModalNewTask />
       </Modal>
-      <Test />
     </div>
   );
 }

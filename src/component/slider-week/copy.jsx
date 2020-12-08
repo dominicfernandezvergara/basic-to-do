@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import moment from "moment";
 import cn from "classnames";
 
-import styles from "./test.module.css";
+import styles from "./slider-week.module.css";
 
 const arrDays = [
   {
@@ -37,7 +37,7 @@ const arrDays = [
 const prevDayTextButton = "<";
 const nextDayTextButton = ">";
 
-function Test() {
+function SliderWeek() {
   const currentDateDay = moment().format("D");
   const [currentDay, setCurrentDay] = useState(Number(currentDateDay));
   const currentDateMonth = moment().format("M");
@@ -153,6 +153,12 @@ function Test() {
     setMonthDays(newDays);
     setCurrentDay(index);
   };
+  const handlePrevMonth = () => {
+    console.log("handlePrevMonth");
+  };
+  const handleNextMonth = () => {
+    console.log("handleNextMonth");
+  };
 
   const daysList = week.map((item, index) => {
     return (
@@ -173,15 +179,15 @@ function Test() {
         <button
           type="button"
           className={styles.buttonHandMonthChange}
-          onClick={handlePrevDay}
+          onClick={handlePrevMonth}
         >
           {prevDayTextButton}
         </button>
-        <div className={styles.containerCurrentMonth}>{currentMonth}</div>
+        <div className={styles.currentMonth}>{currentMonth}</div>
         <button
           type="button"
           className={styles.buttonHandMonthChange}
-          onClick={handleNextDay}
+          onClick={handleNextMonth}
         >
           {nextDayTextButton}
         </button>
@@ -207,4 +213,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default SliderWeek;
