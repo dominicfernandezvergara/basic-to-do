@@ -1,66 +1,23 @@
 import React, { useState } from "react";
-import moment from "moment";
 import cn from "classnames";
 
 import styles from "./slider-week.module.css";
-
-const arrDays = [
-  {
-    dayName: "Mon",
-    numberDay: 1,
-  },
-  {
-    dayName: "Tue",
-    numberDay: 2,
-  },
-  {
-    dayName: "Wed",
-    numberDay: 3,
-  },
-  {
-    dayName: "Thu",
-    numberDay: 4,
-  },
-  {
-    dayName: "Fri",
-    numberDay: 5,
-  },
-  {
-    dayName: "Sat",
-    numberDay: 6,
-  },
-  {
-    dayName: "Sun",
-    numberDay: 7,
-  },
-];
-const prevDayTextButton = "<";
-const nextDayTextButton = ">";
+import {
+  arrDays,
+  monthNames,
+  nextDayTextButton,
+  prevDayTextButton,
+} from "../../constants";
 
 function SliderWeek() {
-  const vw = Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
-  );
-  const currentDate = moment().format("D");
-  const [currentDay, setCurrentDay] = useState(Number(currentDate));
-  console.log("currentDay", currentDay);
-  const weekNumber = Math.ceil(currentDay / 7);
+  const currentDateDay = new Date().getDate();
+  const currentDaytoGetCurrentMonth = new Date();
+  const currentDateMonth = currentDaytoGetCurrentMonth.getMonth();
+  const [currentDay, setCurrentDay] = useState(currentDateDay);
+  const [currentMonth, setCurrentMonth] = useState(currentDateMonth);
 
-  const actionButtonsWidth = 50;
-
-  console.log("weekNumber", weekNumber);
-  const itemWidth = vw / 7 - 17;
-  let currentTranslation =
-    weekNumber > 1
-      ? 7 * weekNumber * itemWidth * -1
-      : 7 * weekNumber * itemWidth;
-  currentTranslation = currentTranslation >= 50 ? 50 : currentTranslation;
-  currentTranslation = currentTranslation <= -1693 ? -1693 : currentTranslation;
-
-  console.log("currentTranslation", currentTranslation);
-  function getCurrentWeekDays(year, month) {
-    const positionInWeekOfFirstMonthDay = new Date(year, month, 1).getDay();
+  function getCurrentWeekDays(year) {
+    const positionInWeekOfFirstMonthDay = new Date(year, 0).getDay();
     let newArrDays = [...arrDays];
 
     for (let k = 0; k < positionInWeekOfFirstMonthDay - 1; k++) {
@@ -71,123 +28,183 @@ function SliderWeek() {
     }
 
     const daysArr = newArrDays.map((item) => item.dayName);
-
     return daysArr;
   }
 
   const getDaysArray = function () {
-    let month = moment().month();
-    let year = moment().year();
-    let monthIndex = month; // 0..11 instead of 1..12
-    let names = getCurrentWeekDays(year, month);
-    let date = new Date(year, month, 1);
-    let result = [];
+    const year = new Date().getFullYear();
+    const names = getCurrentWeekDays(year);
+    const arrayDaysYear = [];
+    const date = new Date(year, 0);
+    let count = 0;
 
-    while (date.getMonth() === monthIndex) {
-      const id = date.getDate() + names[date.getDay()];
+    while (date.getFullYear() === year) {
+      /* month to which each day corresponds */
+      const monthEachDay = date.getMonth();
+      const month = monthNames[monthEachDay];
+      const day = date.getDate();
+      let valueWeekNumber = 1;
 
-      result.push({
-        id,
-        dayNumberWeek: date.getDate(),
-        dayNameWeek: names[date.getDay()],
-        active: Number(currentDay) === date.getDate(),
-      });
-      date.setDate(date.getDate() + 1);
-    }
-
-    return result;
-  };
-
-  // la clave!!!!!
-  const [monthDays, setMonthDays] = useState(getDaysArray());
-
-  const activeItem = (index) => {
-    const newDays = monthDays.map((item, i) => {
-      if (i === index) {
-        item.active = true;
-      } else {
-        item.active = false;
+      /* conditional rendering to know what week
+      number corresponds to each day of the month*/
+      if (day <= 7) {
+        valueWeekNumber = 1;
+      } else if (day >= 8 && day <= 14) {
+        valueWeekNumber = 2;
+      } else if (day <= 21 && day >= 15) {
+        valueWeekNumber = 3;
+      } else if (day <= 28 && day >= 22) {
+        valueWeekNumber = 4;
+      } else if (day <= 31 && day >= 29) {
+        valueWeekNumber = 5;
       }
-      return item;
-    });
-    setMonthDays(newDays);
-    setCurrentDay(index);
+
+      // Checking when index week day should be reset
+      if (count > 6) {
+        count = 0;
+      }
+
+      /* Id to object */
+      const id = date.getDate() + month;
+
+      arrayDaysYear.push({
+        id,
+        month,
+        monthNumber: date.getMonth(),
+        weekDay: names[count],
+        day,
+        weekNumber: valueWeekNumber,
+        active:
+          Number(currentDay) === date.getDate() &&
+          currentDateMonth === date.getMonth(),
+        tasks: {
+          id: "",
+          title: "",
+          hour: "",
+          task: "",
+          type: "",
+        },
+      });
+
+      date.setDate(date.getDate() + 1);
+      count++;
+    }
+    return arrayDaysYear;
   };
+
+  //CLAVEEE!!
+  //CURRENT YEAR ARRAY
+  const [yearDays, setYearDays] = useState(getDaysArray());
+
+  //CURRENT MONTH ARRAY
+  const arrayMonthDays = yearDays.filter((item) => {
+    return item.monthNumber === currentMonth;
+  });
+
+  //CURRENT DAY OBJECT
+  const currentDayData = arrayMonthDays.find((item) => {
+    return item.day === currentDay && item.monthNumber === currentMonth;
+  });
+
+  //CURRENT WEEK
+  // ?? ===> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
+  // obj?.algo?.some ===> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+  const [currentNumberWeek, setCurrentNumberWeek] = useState(
+    currentDayData?.weekNumber ?? 1
+  );
+
+  //Week!!
+  const week = arrayMonthDays.filter((item) => {
+    return item.weekNumber === currentNumberWeek;
+  });
 
   const handlePrevDay = () => {
-    const prevDay = currentDay - 7 <= 0 ? 0 : currentDay - 7;
-    let currentDayNumber = currentDay;
-    if (currentDayNumber < 0) {
+    const prevWeek = currentNumberWeek - 1;
+    let currentDayNumber = currentNumberWeek;
+    if (currentDayNumber < 1) {
       currentDayNumber = 0;
     }
-    setCurrentDay(prevDay);
-    const newWeekNumber = Math.ceil(prevDay / 7) - 1;
-
-    let currentTranslation2 = newWeekNumber * 7 * itemWidth * -1;
-    // let currentTranslation2 = actionButtonsWidth - prevDay * itemWidth;
-    currentTranslation2 = currentTranslation2 >= 50 ? 50 : currentTranslation2;
-
-    setTransform(`translate(${currentTranslation2}px)`);
+    setCurrentNumberWeek(prevWeek);
   };
 
   const handleNextDay = () => {
-    const monthDays = new Date(2020, 12, 0).getDate();
-    const nexDay = currentDay + 7 >= monthDays ? monthDays : currentDay + 7;
-    // const nexDay = currentDay + 7;
-    const lastIndexOfArray = monthDays.length - 7;
-    let indexNewCurrentDay = currentDay;
-
-    if (indexNewCurrentDay > lastIndexOfArray) {
-      indexNewCurrentDay = lastIndexOfArray;
-    }
-
-    setCurrentDay(nexDay);
-    const newWeekNumber = Math.ceil(nexDay / 7) - 1;
-    let currentTranslation2 = newWeekNumber * 7 * itemWidth * -1;
-    currentTranslation2 =
-      currentTranslation2 <= -1693 ? -1693 : currentTranslation2;
-    console.log("currentTranslation2", currentTranslation2);
-
-    setTransform(`translate(${currentTranslation2}px)`);
+    const nextWeek = currentNumberWeek + 1;
+    // let currentDayNumber = currentNumberWeek;
+    // if (currentDayNumber < 1) {
+    //   currentDayNumber = 0;
+    // }
+    setCurrentNumberWeek(nextWeek);
   };
 
-  const dayList = monthDays.map((item, index) => {
+  const activeItem = (day, month) => {
+    const newDays = yearDays.map((item) => {
+      // if (item.day === day && item.month === month) {
+      //   item.active = true;
+      // } else {
+      //   item.active = false;
+      // }
+      // Fancy way instead using if statement
+      item.active = Boolean(item.day === day && item.month === month);
+
+      return item;
+    });
+
+    setYearDays(newDays);
+    setCurrentDay(day);
+  };
+
+  const handlePrevMonth = () => {
+    setCurrentMonth(currentMonth - 1);
+  };
+  const handleNextMonth = () => {
+    setCurrentMonth(currentMonth + 1);
+  };
+
+  const daysList = week.map((item, index) => {
     return (
       <button
         type="button"
-        onClick={() => activeItem(index)}
+        onClick={() => activeItem(item.day, item.month)}
         className={cn(styles.item, item.active ? styles.activeItem : item)}
         key={index}
       >
-        <div className={styles.dayNameWeek}>{item.dayNameWeek}</div>
-        <div className={styles.dayNumberWeek}>{item.dayNumberWeek}</div>
+        <div className={styles.weekDay}>{item.weekDay}</div>
+        <div className={styles.day}>{item.day}</div>
       </button>
     );
   });
-  const [transform, setTransform] = useState(
-    `translate(${currentTranslation}px)`
-  );
+
   return (
     <div>
+      <div className={styles.containerMonth}>
+        <button
+          type="button"
+          className={styles.buttonHandMonthChange}
+          onClick={handlePrevMonth}
+        >
+          {prevDayTextButton}
+        </button>
+        <div className={styles.currentMonth}> {monthNames[currentMonth]}</div>
+        <button
+          type="button"
+          className={styles.buttonHandMonthChange}
+          onClick={handleNextMonth}
+        >
+          {nextDayTextButton}
+        </button>
+      </div>
       <div className={styles.containerSliderDays}>
         <button
           type="button"
-          className={styles.buttonPrevDay}
+          className={styles.buttonHandWeekChange}
           onClick={handlePrevDay}
         >
           {prevDayTextButton}
         </button>
-        <div
-          className={styles.containerDayList}
-          style={{
-            transform,
-          }}
-        >
-          {dayList}
-        </div>
+        <div className={styles.containerDayList}>{daysList}</div>
         <button
           type="button"
-          className={styles.buttonNextDay}
+          className={styles.buttonHandWeekChange}
           onClick={handleNextDay}
         >
           {nextDayTextButton}
